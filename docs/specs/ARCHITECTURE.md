@@ -12,6 +12,8 @@
 
 The compiler is the primary enforcement mechanism: graph state is a generic `S: Send + 'static`, structured output is `S: DeserializeOwned + JsonSchema + Send`, and edge conditions are typed predicates over `&S`. Stringly-typed state lookups are deliberately absent.
 
+![weaver-rs architecture](assets/rust_agent_framework_architecture.svg)
+
 ## Component Map <!-- required -->
 
 - **`primitives/`** — concrete types used everywhere
