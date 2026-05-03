@@ -1,0 +1,26 @@
+[package]
+name    = "weaver-rs"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default  = ["react"]
+react    = []
+rewoo    = []
+compiler = []           # LLMCompiler strategy
+multi    = []           # multi-agent runtime
+
+[dependencies]
+# Core
+serde       = { version = "1", features = ["derive"] }
+serde_json  = "1"
+schemars    = { version = "0.8", features = ["derive"] }
+async-trait = "0.1"
+thiserror   = "1"
+chrono      = { version = "0.4", features = ["serde"] }
+uuid        = { version = "1", features = ["v4"] }
+tokio       = { version = "1", features = ["full"] }
+
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full", "test-util"] }
