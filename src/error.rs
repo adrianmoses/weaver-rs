@@ -1,4 +1,5 @@
-// error.rs
+use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, thiserror::Error)]
 pub enum LoomError {
@@ -23,8 +24,18 @@ pub enum LoomError {
     #[error("max iterations reached: {0}")]
     MaxIterations(usize),
 
+    #[error("cancelled")]
+    Cancelled,
+
     #[error("interrupted: {0:?}")]
     Interrupted(InterruptReason),
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum InterruptReason {
+    HumanApproval { prompt: String },
+    ExternalEvent { event_id: String },
+    Scheduled { resume_at: DateTime<Utc> },
 }
 
 pub type Result<T> = std::result::Result<T, LoomError>;

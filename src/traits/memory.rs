@@ -1,11 +1,15 @@
-// traits/memory.rs
+use async_trait::async_trait;
+use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
+
+use crate::error::LoomError;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MemoryEntry {
-    pub id:        String,
-    pub content:   String,
+    pub id: String,
+    pub content: String,
     pub embedding: Option<Vec<f32>>,
-    pub meta:      serde_json::Value,
+    pub meta: serde_json::Value,
     pub stored_at: DateTime<Utc>,
 }
 
@@ -24,6 +28,11 @@ pub trait SemanticMemory: Send + Sync {
 
 #[async_trait]
 pub trait EpisodicMemory: Send + Sync {
-    async fn record(&self, run_id: &str, summary: &str, meta: serde_json::Value) -> Result<(), LoomError>;
+    async fn record(
+        &self,
+        run_id: &str,
+        summary: &str,
+        meta: serde_json::Value,
+    ) -> Result<(), LoomError>;
     async fn recall(&self, run_id: &str) -> Result<Option<MemoryEntry>, LoomError>;
 }

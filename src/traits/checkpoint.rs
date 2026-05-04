@@ -1,19 +1,18 @@
-// traits/checkpoint.rs
+use async_trait::async_trait;
+use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
+
+use crate::error::LoomError;
+
+pub use crate::error::InterruptReason;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Checkpoint {
-    pub run_id:      String,
-    pub node_id:     String,
-    pub state_json:  serde_json::Value,   // erased — runtime restores with T
+    pub run_id: String,
+    pub node_id: String,
+    pub state_json: serde_json::Value,
     pub interrupted: Option<InterruptReason>,
-    pub saved_at:    DateTime<Utc>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub enum InterruptReason {
-    HumanApproval { prompt: String },
-    ExternalEvent  { event_id: String },
-    Scheduled      { resume_at: DateTime<Utc> },
+    pub saved_at: DateTime<Utc>,
 }
 
 #[async_trait]
