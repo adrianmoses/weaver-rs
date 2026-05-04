@@ -1,15 +1,22 @@
-// primitives/message.rs
+use serde::{Deserialize, Serialize};
+
+use crate::primitives::tool::ToolCall;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Message {
-    pub role:    Role,
+    pub role: Role,
     pub content: MessageContent,
-    pub meta:    Option<MessageMeta>,  // token counts, model, latency
+    pub meta: Option<MessageMeta>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
-pub enum Role { System, User, Assistant, Tool }
+pub enum Role {
+    System,
+    User,
+    Assistant,
+    Tool,
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -21,8 +28,8 @@ pub enum MessageContent {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct MessageMeta {
-    pub input_tokens:  Option<u32>,
+    pub input_tokens: Option<u32>,
     pub output_tokens: Option<u32>,
-    pub latency_ms:    Option<u64>,
-    pub model:         Option<String>,
+    pub latency_ms: Option<u64>,
+    pub model: Option<String>,
 }
