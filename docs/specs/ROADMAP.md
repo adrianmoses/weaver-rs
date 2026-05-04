@@ -10,7 +10,7 @@
 
 | ID  | Feature                       | Status  | Spec |
 |-----|-------------------------------|---------|------|
-| 001 | Core graph runtime            | in-progress | [spec](001-core-graph-runtime/spec.md) |
+| 001 | Core graph runtime            | implemented | [spec](001-core-graph-runtime/spec.md) · [decision](001-core-graph-runtime/decision.md) |
 | 002 | Tool registry                 | planned | —    |
 | 003 | LLM client adapters           | planned | —    |
 | 004 | Structured output             | planned | —    |
@@ -46,3 +46,4 @@ The **Examples module** (006) is treated as a first-class feature, not a side ar
 | 2026-05-03 | Added Examples module as feature 006; subsequent IDs (ReWOO → Agent-as-tool) bumped +1 |
 | 2026-05-03 | Added Human-in-the-loop interrupts as feature 011; Memory → Agent-as-tool bumped +1     |
 | 2026-05-04 | Core graph runtime (001) moved to in-progress; spec drafted at 001-core-graph-runtime/  |
+| 2026-05-04 | Core graph runtime (001) implemented; decision record at 001-core-graph-runtime/        |

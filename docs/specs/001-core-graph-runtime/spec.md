@@ -3,7 +3,7 @@
 | Field   | Value      |
 |---------|------------|
 | id      | 001        |
-| status  | draft      |
+| status  | approved   |
 | created | 2026-05-04 |
 
 ---
